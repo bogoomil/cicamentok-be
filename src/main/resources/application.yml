@@ -1,0 +1,52 @@
+server: 
+  port: 8088
+  servlet: 
+    encoding:
+      charset: UTF-8
+      enabled: true
+
+spring:
+  mandatory-file-encoding: UTF-8
+  security:
+    oauth2:      
+      resourceserver:        
+        jwt:        
+          issuer-uri: https://sso.oldalaim.com/auth/realms/cicamentok
+          jwk-set-uri: https://sso.oldalaim.com/auth/realms/cicamentok/protocol/openid-connect/certs
+          
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/glider?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: bodrikutya
+#    driverClassName: com.mysql.jdbc.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: false
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5Dialect
+    
+
+logging:
+  level:
+    org.springframework.web.client: debug
+    org.springframework: info
+    hu.boga: debug
+    hu.boga.security: debug
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: trace
+    org.springframework.web.servlet.mvc: debug
+    org.springframework.boot.web.servlet: info
+    org.springframework.security.web.FilterChainProxy: info
+    org.keycloak: TRACE
+#    org.hibernate.stat: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE    
+keycloak:
+  auth-server-url: https://sso.oldalaim.com/auth
+  realm: cicamentok
+  resource: cicamentok
+  public-client: true
+  principal-attribute: preferred_username
+  use-resource-role-mappings: true
+          
